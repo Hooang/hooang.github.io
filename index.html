@@ -1,1 +1,51 @@
-<br>Hello World</br>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>My Blog</title>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; }
+    .post { margin-bottom: 2rem; border-bottom: 1px solid #ccc; padding-bottom: 1rem; }
+    .date { color: #666; font-size: 0.9em; }
+  </style>
+</head>
+<body>
+  <h1>My Blog</h1>
+  <div id="posts">불러오는 중...</div>
+
+  <script>
+    const sheetURL = 'https://docs.google.com/spreadsheets/d/16xkdGsNfQvC29aPg-PEdjOGgu7m-Zjabqlv-APiyO_8/gviz/tq?tqx=out:json&sheet=posts';
+
+    fetch(sheetURL)
+      .then(res => res.text())
+      .then(dataText => {
+        // Remove Google's JSONP wrapper
+        const json = JSON.parse(dataText.match(/(?<=\{).*?(?=\}\);)/s)[0]);
+
+        const rows = json.table.rows;
+        const posts = rows.map(row => {
+          const [id, title, content, dateTime] = row.c.map(c => c?.v || "");
+          return { id, title, content, dateTime };
+        });
+
+        const container = document.getElementById("posts");
+        container.innerHTML = ""; // 초기 메시지 제거
+
+        posts.forEach(post => {
+          const el = document.createElement("div");
+          el.className = "post";
+          el.innerHTML = `
+            <h2>${post.title}</h2>
+            <div class="date">${post.dateTime}</div>
+            <div class="content">${post.content}</div>
+          `;
+          container.appendChild(el);
+        });
+      })
+      .catch(err => {
+        document.getElementById("posts").innerText = "글을 불러올 수 없습니다.";
+        console.error(err);
+      });
+  </script>
+</body>
+</html>
