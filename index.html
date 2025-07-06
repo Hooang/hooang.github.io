@@ -14,13 +14,15 @@
   <div id="posts">불러오는 중...</div>
 
   <script>
+	debugger;
     const sheetURL = 'https://docs.google.com/spreadsheets/d/16xkdGsNfQvC29aPg-PEdjOGgu7m-Zjabqlv-APiyO_8/gviz/tq?tqx=out:json&sheet=posts';
 
     fetch(sheetURL)
       .then(res => res.text())
       .then(dataText => {
+		debugger;
         // Remove Google's JSONP wrapper
-        const json = JSON.parse(dataText.match(/(?<=\{).*?(?=\}\);)/s)[0]);
+        const json = JSON.parse(dataText.match(/google.visualization.Query.setResponse\(([\s\S]+)\);?/)[1]);
 
         const rows = json.table.rows;
         const posts = rows.map(row => {
