@@ -1,0 +1,58 @@
+{
+  "name": "hooang-blog",
+  "version": "1.0.0",
+  "description": "Hooang's personal blog based on Chirpy Jekyll theme.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hooang/hooang.github.io.git"
+  },
+  "author": "Inhoo Hwang (Andrew Hwang)",
+  "license": "MIT",
+  "since": 2025,
+  "bugs": {
+    "url": "https://github.com/Hooang/hooang.github.io/issues"
+  },
+  "homepage": "https://github.com/Hooang/hooang.github.io",
+  "type": "module",
+  "scripts": {
+    "build:css": "node purgecss.js",
+    "build:js": "rollup -c --bundleConfigAsCjs --environment BUILD:production",
+    "build:node": "npm run build:css && npm run build:js",
+    "build:jekyll": "bundle exec jekyll build",
+    "build": "npm run build:node && npm run build:jekyll",
+    "serve": "npm run build:node && bundle exec jekyll serve",
+    "watch:js": "rollup -c --bundleConfigAsCjs -w",
+    "lint:js": "eslint",
+    "lint:scss": "stylelint _sass/**/*.scss",
+    "lint:fix:scss": "npm run lint:scss -- --fix",
+    "test": "npm run lint:js && npm run lint:scss"
+  },
+  "dependencies": {
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.6"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.27.1",
+    "@babel/plugin-transform-class-properties": "^7.27.1",
+    "@babel/plugin-transform-private-methods": "^7.27.1",
+    "@babel/preset-env": "^7.27.2",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-terser": "^0.4.4",
+    "concurrently": "^9.1.2",
+    "eslint": "^9.27.0",
+    "husky": "^9.1.7",
+    "purgecss": "^7.0.2",
+    "rollup": "^4.41.0",
+    "stylelint": "^16.19.1",
+    "stylelint-config-standard-scss": "^15.0.1"
+  },
+  "prettier": {
+    "trailingComma": "none"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "> 0.2%",
+    "not dead"
+  ]
+}

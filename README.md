@@ -4,7 +4,7 @@
   <!-- markdownlint-disable-next-line -->
   # Hooang's Blog Project
 
-  A personal blog project based on the Chirpy Jekyll Theme.
+  A personal blog project based on the Chirpy Jekyll Theme(7.3.1.)
 
   [![GitHub Pages](https://img.shields.io/badge/Chirpy-GitHub%20Page-blue?logo=github)][chirpy-github]
 

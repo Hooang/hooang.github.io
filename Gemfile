@@ -2,7 +2,13 @@
 
 source "https://rubygems.org"
 
-gem "jekyll-theme-chirpy", "~> 7.3", ">= 7.3.1"
+gem "jekyll", "~> 4.4"
+gem "webrick", "~> 1.8"   # Jekyll 4.4 이상에서 필요
+gem "jekyll-paginate", "~> 1.1"
+gem "jekyll-seo-tag", "~> 2.8"
+gem "jekyll-archives", "~> 2.2"
+gem "jekyll-sitemap", "~> 1.4"
+gem "jekyll-include-cache", "~> 0.2"
 
 gem "html-proofer", "~> 5.0", group: :test
 
