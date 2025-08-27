@@ -51,23 +51,16 @@ jobs:
           cp -r assets/js/dist/* _site/assets/js/dist/
           cp -r assets/css/* _site/assets/css/
 
-      # Ruby 환경 설정
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 3.3
-          bundler-cache: true
-
-      # Jekyll 빌드
+      # Jekyll 빌드 (Gem 테마 없이 단순 빌드)
       - name: Build Jekyll site
-        run: bundle exec jekyll build -d "_site${{ steps.pages.outputs.base_path }}"
+        run: jekyll build -d _site
         env:
           JEKYLL_ENV: "production"
 
       # HTML 검증
       - name: Test site
         run: |
-          bundle exec htmlproofer _site \
+          htmlproofer _site \
             --disable-external \
             --ignore-urls "/^http:\/\/127.0.0.1/,/^http:\/\/0.0.0.0/,/^http:\/\/localhost/"
 
@@ -80,7 +73,7 @@ jobs:
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "_site${{ steps.pages.outputs.base_path }}"
+          path: "_site"
 
   deploy:
     environment:
