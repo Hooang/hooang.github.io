@@ -1,10 +1,8 @@
-name: "Build and Deploy"
+name: Build and Deploy
 
 on:
   push:
-    branches:
-      - main
-      - master
+    branches: [ main, master ]
     paths-ignore:
       - .gitignore
       - README.md
@@ -25,56 +23,60 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. 코드 체크아웃
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      # 2. Node.js 설치
+      # GitHub Pages 구성 (base_path 확보)
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v4
+
+      # Ruby + Bundler (Jekyll, htmlproofer용)
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+
+      # Node (자산 빌드용)
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
 
-      # 3. Node 의존성 설치
       - name: Install Node dependencies
-        run: npm install
+        run: npm install --no-audit --no-fund
 
-      # 4. JS/CSS 빌드
       - name: Build JS/CSS assets
         run: npm run build:node
 
-      # 5. 빌드 결과를 _site로 복사
-      - name: Copy built assets to _site
+      # Jekyll 빌드 (Pages base_path 반영)
+      - name: Build Jekyll site
+        env:
+          JEKYLL_ENV: production
+        run: bundle exec jekyll build -d "_site${{ steps.pages.outputs.base_path }}"
+
+      # HTML 검증: htmlproofer 사용 (Ruby 기반, glob 문제 없음)
+      - name: Test site (htmlproofer)
         run: |
-          mkdir -p _site/assets/js/dist
-          mkdir -p _site/assets/css
-          cp -r assets/js/dist/* _site/assets/js/dist/
-          cp -r assets/css/* _site/assets/css/
+          bundle exec htmlproofer "_site${{ steps.pages.outputs.base_path }}" \
+            --disable-external \
+            --ignore-urls "/^http:\/\/(127\.0\.0\.1|0\.0\.0\.0|localhost)/"
 
-      # 6. HTML 검증 (선택)
-      - name: Validate HTML
-        run: |
-          npx html-validator-cli "_site/**/*.html" --verbose
-
-      # 7. GitHub Pages 설정
-      - name: Setup Pages
-        id: pages
-        uses: actions/configure-pages@v4
-
-      # 8. _site 업로드
+      # 산출물 업로드
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: "_site${{ steps.pages.outputs.base_path }}"
 
   deploy:
+    runs-on: ubuntu-latest
+    needs: build
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
