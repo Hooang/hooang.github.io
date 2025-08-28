@@ -1,7 +1,8 @@
 ---
 title: About this blog
 author: hooang
-date: 2025-08-27 16:43:00 +0900
+date: 2025-08-27 16:43:00 +0900  # 최초 생성일
+last_modified_at: 2025-08-28 11:19:00 +0900  # 마지막 수정일
 categories: [Info, Notice]
 tags: [info]
 mermaid: true
@@ -23,6 +24,14 @@ This blog is based on the **Chirpy Jekyll Theme (v7.3.1)** and uses the followin
 - Posts created with the web editor must be saved as Markdown files and automatically committed and pushed to the repository
 - Credentials data must be encrypted
 - Enable user comments by managing comment data through Google Sheets
+
+## Goals Detail
+
+### Use Jekyll Theme
+- Use jekyll-theme-chirpy-7.3.1
+- Configure the theme so that it does not use a Gem-based Theme, but instead downloads the base files of the theme locally for direct modification.
+- Remove unused icons from the footer, and add Instagram and language-setting icons.
+- Change the theme background color or background image.
 
 ## Goal Plan Gantt Chart
 ```mermaid

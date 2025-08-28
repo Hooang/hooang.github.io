@@ -22,13 +22,15 @@
 
 The following features are planned for upcoming updates:
 
-- Use Jekyll theme (Completed)
-- If you edit webpage or create post, need to login (GitHub)
-- Make personal web-editor
-- Posts must be saved as Markdown files with automatic push to GitHub
+- Use Jekyll theme
+- Automatically switch language according to the user's browser settings
+- If you edit webpage or create a post, need to login (GitHub)
+- Make a personal web-editor
+- Posts created with the web editor must be saved as Markdown files and automatically committed and pushed to the repository
 - Credentials data must be encrypted
+- Enable user comments by managing comment data through Google Sheets
 
-> For a detailed plan, please refer to the [README.pptx](./README.pptx) file.
+> For a detailed plan, please refer to the [About this blog][about-this-blog-page] page.
 
 ## Documentation
 
@@ -51,6 +53,7 @@ The avatar and favicon used in this project are from [ClipartMAX][clipartmax].
 
 This project is published under [MIT License][chirpy-license].
 
+[about-this-blog-page]: https://hooang.github.io/posts/about-this-blog
 [chirpy-github]: https://github.com/cotes2020/jekyll-theme-chirpy
 [chirpy-wiki]: https://github.com/cotes2020/jekyll-theme-chirpy/wiki
 [chirpy-contribute]: https://github.com/cotes2020/jekyll-theme-chirpy/blob/master/docs/CONTRIBUTING.md
