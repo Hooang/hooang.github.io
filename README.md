@@ -28,7 +28,6 @@ The following features are planned for upcoming updates:
 - Make a personal web-editor
 - Posts created with the web editor must be saved as Markdown files and automatically committed and pushed to the repository
 - Credentials data must be encrypted
-- Enable user comments by managing comment data through Google Sheets
 
 > For a detailed plan, please refer to the [About this blog][about-this-blog-page] page.
 

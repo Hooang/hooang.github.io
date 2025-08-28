@@ -6,6 +6,7 @@ last_modified_at: 2025-08-28 11:19:00 +0900  # 마지막 수정일
 categories: [Info, Notice]
 tags: [info]
 mermaid: true
+comments: true
 ---
 
 # About This Blog
@@ -23,7 +24,6 @@ This blog is based on the **Chirpy Jekyll Theme (v7.3.1)** and uses the followin
 - Make a personal web-editor
 - Posts created with the web editor must be saved as Markdown files and automatically committed and pushed to the repository
 - Credentials data must be encrypted
-- Enable user comments by managing comment data through Google Sheets
 
 ## Goals Detail
 
@@ -78,15 +78,6 @@ gantt
     Web editor :crit, d, 2025-09-03, 19d
   {% else %}
     Web editor :d, 2025-09-03, 19d
-  {% endif %}
-
-  %% Comment system (구글시트 연동, 사용자 코멘트 관리)
-  {% assign start_comment = "2025-09-22" %}
-  {% assign end_comment = "2025-09-24" %}
-  {% if today >= start_comment and today <= end_comment %}
-    Comment system :crit, e, 2025-09-22, 3d
-  {% else %}
-    Comment system :e, 2025-09-22, 3d
   {% endif %}
 ```
 
