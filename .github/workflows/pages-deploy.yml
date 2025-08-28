@@ -1,4 +1,5 @@
 name: "Build and Deploy"
+
 on:
   push:
     branches:
@@ -24,26 +25,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      # 1. 코드 체크아웃
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      # Node.js 설치
+      # 2. Node.js 설치
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
 
-      # Node dependencies 설치
+      # 3. Node 의존성 설치
       - name: Install Node dependencies
         run: npm install
 
-      # Node 빌드 (JS/CSS)
+      # 4. JS/CSS 빌드
       - name: Build JS/CSS assets
-        run: npm run build
+        run: npm run build:node
 
-      # JS/CSS를 _site로 복사
+      # 5. 빌드 결과를 _site로 복사
       - name: Copy built assets to _site
         run: |
           mkdir -p _site/assets/js/dist
@@ -51,29 +53,21 @@ jobs:
           cp -r assets/js/dist/* _site/assets/js/dist/
           cp -r assets/css/* _site/assets/css/
 
-      # Jekyll 빌드 (Gem 테마 없이 단순 빌드)
-      - name: Build Jekyll site
-        run: jekyll build -d _site
-        env:
-          JEKYLL_ENV: "production"
-
-      # HTML 검증
-      - name: Test site
+      # 6. HTML 검증 (선택)
+      - name: Validate HTML
         run: |
-          htmlproofer _site \
-            --disable-external \
-            --ignore-urls "/^http:\/\/127.0.0.1/,/^http:\/\/0.0.0.0/,/^http:\/\/localhost/"
+          npx html-validator-cli "_site/**/*.html" --verbose
 
-      # GitHub Pages 설정
+      # 7. GitHub Pages 설정
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v4
 
-      # _site 업로드
+      # 8. _site 업로드
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "_site"
+          path: "_site${{ steps.pages.outputs.base_path }}"
 
   deploy:
     environment:
