@@ -4,10 +4,9 @@
 
 | Version    | Supported |
 | :--------- | :-------: |
-| >= `7.0.0` |     ✓     |
-| <= `6.0.0` |     ✗     |
+| >= `1.0.0` |     ✓     |
 
 ## Reporting a Vulnerability
 
-If you find a vulnerability, please report it to `cotes.chung@gmail.com`.
+If you find a vulnerability, please report it to `leeio3@naver.com`.
 We will try our best to respond within a week. Thank you for your time!
