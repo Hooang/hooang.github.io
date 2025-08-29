@@ -52,7 +52,7 @@ function build(
       format: 'iife',
       ...(outputName !== null && { name: outputName }),
       banner,
-      sourcemap: !isProd && !jekyll
+      sourcemap: true //!isProd && !jekyll
     },
     ...(shouldWatch && { watch: { include: `${SRC_DEFAULT}/**/*.js` } }),
     plugins: [
