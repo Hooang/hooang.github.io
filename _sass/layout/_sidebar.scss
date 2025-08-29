@@ -225,6 +225,35 @@ $sidebar-display: 'sidebar-display'; /* the attribute for sidebar display */
       line-height: $btn-size;
     }
 
+    .lang-wrapper {
+      position: relative; // 버튼 기준으로 위치
+
+      #lang-btn {
+        @extend %button;
+        @extend %sidebar-links;
+        @extend %sidebar-link-hover;
+
+        margin-right: v.$sb-btn-gap;
+
+        @include bp.xxxl {
+          margin-right: v.$sb-btn-gap-lg;
+        }
+      }
+
+      #lang-bubble {
+        position: absolute;
+        bottom: 100%;
+        left: 0;
+        display: flex;
+        gap: 0.5rem;
+        background: var(--sidebar-btn-bg);
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        z-index: 10;
+      }
+    }
+
     #mode-toggle {
       @extend %button;
       @extend %sidebar-links;

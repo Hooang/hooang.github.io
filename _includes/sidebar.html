@@ -40,7 +40,20 @@
     </ul>
   </nav>
 
-  <div class="sidebar-bottom d-flex flex-wrap  align-items-center w-100">
+  <div class="sidebar-bottom d-flex flex-wrap align-items-center w-100">
+    <!-- Language Dropdown -->
+    <div class="lang-wrapper" style="position: relative;">
+      <button type="button" class="btn nav-link" id="lang-btn">
+        <i class="fas fa-globe"></i>
+      </button>
+      <div id="lang-bubble" class="lang-bubble d-none">
+        <span class="lang-emoji" data-lang="ko-KR">🇰🇷</span>
+        <span class="lang-emoji" data-lang="en">🇺🇸</span>
+        <span class="lang-emoji" data-lang="zh-CN">🇨🇳</span>
+        <span class="lang-emoji" data-lang="zh-TW">🇹🇼</span>
+      </div>
+    </div>
+
     {% unless site.theme_mode %}
       <button type="button" class="btn btn-link nav-link" aria-label="Switch Mode" id="mode-toggle">
         <i class="fas fa-adjust"></i>
