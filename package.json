@@ -32,7 +32,7 @@
     "bootstrap": "^5.3.8"
   },
   "devDependencies": {
-    "@babel/core": "^7.28.3",
+    "@babel/core": "^7.28.4",
     "@babel/plugin-transform-class-properties": "^7.27.1",
     "@babel/plugin-transform-private-methods": "^7.27.1",
     "@babel/preset-env": "^7.28.3",
@@ -40,11 +40,11 @@
     "@rollup/plugin-node-resolve": "^16.0.1",
     "@rollup/plugin-terser": "^0.4.4",
     "concurrently": "^9.2.1",
-    "eslint": "^9.34.0",
+    "eslint": "^9.35.0",
     "husky": "^9.1.7",
     "purgecss": "^7.0.2",
-    "rollup": "^4.49.0",
-    "stylelint": "^16.23.1",
+    "rollup": "^4.50.1",
+    "stylelint": "^16.24.0",
     "stylelint-config-standard-scss": "^15.0.1"
   },
   "prettier": {
